@@ -54,7 +54,8 @@ def showWeather(message):
             bot.send_message(message.chat.id, "City Not Found ")
 
     except:
-        ...
+
+        pass
 
 
 if __name__ == '__main__':
