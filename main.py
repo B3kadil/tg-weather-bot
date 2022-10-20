@@ -47,7 +47,7 @@ def showWeather(message):
 
             weather_description = z[0]["description"]
 
-            text = f" Temperature (in celsius unit) = {str(current_temperature)}°C\nAtmospheric pressure (in hPa unit) = {str(current_pressure)}\nHumidity (in percentage) = {str(current_humidity)}%\nDescription = {str(weather_description)}"
+            text = f"Temperature (in celsius unit) = {str(current_temperature)}°C\nAtmospheric pressure (in hPa unit) = {str(current_pressure)}\nHumidity (in percentage) = {str(current_humidity)}%\nDescription = {str(weather_description)}"
 
             bot.send_photo(message.chat.id, photo, caption=text)
         else:
