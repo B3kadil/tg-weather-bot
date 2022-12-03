@@ -20,12 +20,13 @@ def ApiRequest(city_name):
 
     return date_weather
 
-def GeoApiRequest(lat,long):
+
+def GeoApiRequest(lat, long):
     api_key = '735bb03774533f37710a31f65f3dda66'
 
     base_url = "https://api.openweathermap.org/data/2.5/weather?&units=metric"
 
-    complete_url = base_url + "&appid=" + api_key + "&lat=" + str(lat) + "&lon="+str(long)
+    complete_url = base_url + "&appid=" + api_key + "&lat=" + str(lat) + "&lon=" + str(long)
     print(f'{lat},{long}')
     print(complete_url)
     response = requests.get(complete_url)
@@ -34,20 +35,22 @@ def GeoApiRequest(lat,long):
 
     return date_weather
 
+
 @bot.message_handler(commands=["geo"])
 def geo(message):
     keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
-    button_geo = types.KeyboardButton(text="Отправить местоположение", request_location=True)
+    button_geo = types.KeyboardButton(text="Send geolocation", request_location=True)
     keyboard.add(button_geo)
-    bot.send_message(message.chat.id, "Привет! Нажми на кнопку и передай мне свое местоположение",
+    bot.send_message(message.chat.id, "Hi can you send me your location)",
                      reply_markup=keyboard)
+
 
 @bot.message_handler(content_types=["location"])
 def location(message):
     if message.location is not None:
         long = message.location.longitude
         lat = message.location.latitude
-        print(lat,long)
+        print(lat, long)
     date_weather = GeoApiRequest(lat, long)
     print(date_weather)
     try:
